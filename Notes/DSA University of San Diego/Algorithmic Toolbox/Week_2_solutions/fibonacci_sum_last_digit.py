@@ -1,12 +1,12 @@
-def get_pisano_period(m):
+# def get_pisano_period(m):
     
-    previous = 0
-    current = 1
-    for i in range(m*m):
-        previous, current = current, (previous + current) % m
+#     previous = 0
+#     current = 1
+#     for i in range(m*m):
+#         previous, current = current, (previous + current) % m
 
-        if previous == 0 and current == 1:
-            return i + 1
+#         if previous == 0 and current == 1:
+#             return i + 1
 
 def fibonacci_sum(n):
     if n <= 1:

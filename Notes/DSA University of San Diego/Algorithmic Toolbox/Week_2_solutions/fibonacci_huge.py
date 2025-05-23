@@ -25,6 +25,9 @@ def fibonacci_huge_optimised(n, m):
     pisano_p = calculate_pisano(m)
     rem = n % pisano_p
 
+    if rem <= 1:
+        return rem
+
     previous = 0
     current = 1
     for i in range(2, rem + 1):
