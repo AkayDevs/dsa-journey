@@ -1,31 +1,38 @@
 def merge_sort(arr, lptr, rptr):
-    if lptr <= rptr:
-        return arr[lptr]
+    if lptr >= rptr:
+        return
     
     mid =  lptr + ( (rptr - lptr ) // 2 )
+
     merge_sort(arr, lptr, mid)
     merge_sort(arr, mid + 1, rptr)
 
-    sorted_arr = []
+    merge(arr, lptr, rptr, mid)
+
+
+def merge(arr, lptr, rptr, mid):
+    final_list = []
+
     i, j = lptr, mid + 1 
-    while i <= mid and j < rptr:
+    while i <= mid and j <= rptr:
         if arr[i] < arr[j]:
-            sorted_arr.append(arr[i])
+            final_list.append(arr[i])
             i += 1
         else:
-            sorted_arr.append(arr[j])
+            final_list.append(arr[j])
             j += 1
     
     while i <= mid:
-        sorted_arr.append(arr[i])
+        final_list.append(arr[i])
+        i += 1
     while j <= rptr:
-        sorted_arr.append(arr[j])
+        final_list.append(arr[j])
+        j += 1
 
-    i = lptr
-    for ptr in range(len(sorted_arr)):
-        arr[i] = sorted_arr[ptr]
-    
-    return arr
+    for i in range(len(final_list)):
+        arr[lptr + i] = final_list[i]
+
+    return
 
 
 
@@ -33,4 +40,5 @@ def merge_sort(arr, lptr, rptr):
 if __name__ == "__main__":
     n = int(input())
     arr = list(map(int, input().split()))
-    print(merge_sort(arr,0, n - 1))
+    merge_sort(arr, 0, n - 1)
+    print(arr)
