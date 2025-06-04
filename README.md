@@ -193,3 +193,92 @@ def generate_test(self):
 3. Use a simple but correct reference implementation for comparison
 4. Save failed test cases for debugging
 5. Use a fixed seed for reproducibility when debugging 
+
+# LeetCode Problem Template
+
+A simple, elegant template for working with LeetCode problems locally. The template handles input/output operations and allows you to focus on implementing the solution.
+
+## Features
+
+- Reads input from `input.txt` file or from terminal if the file doesn't exist
+- Writes output to `output.txt` file or displays on terminal if writing fails
+- Supports the standard LeetCode class/method format
+- Handles JSON parsing for complex inputs
+- Minimal dependencies (standard library only)
+
+## Usage
+
+### Setting Up
+
+1. Copy the `leetcode_template.py` file to your solution directory
+2. Update the `solution_method` and `solution_params` variables to match the LeetCode problem
+3. Implement your solution in the `Solution` class
+4. Create test cases in `input.txt` (one test case per line in JSON format)
+
+### Example: Running a Solution
+
+```bash
+python leetcode_template.py
+```
+
+### Input Format
+
+The `input.txt` file should contain one test case per line, with each line being a JSON array of the arguments for the solution method:
+
+```
+# For a method with two arguments (e.g., findMedianSortedArrays(nums1, nums2))
+[[1,3],[2]]
+[[1,2],[3,4]]
+```
+
+### Customizing for Different Problems
+
+For a different LeetCode problem, update these sections in the template:
+
+1. Update the problem configuration:
+   ```python
+   solution_method = "newMethodName"  # Method name from LeetCode
+   solution_params = ["param1", "param2"]  # Parameter names in order
+   ```
+
+2. Implement the Solution class:
+   ```python
+   class Solution:
+       def newMethodName(self, param1: Type1, param2: Type2) -> ReturnType:
+           # Your solution here
+           pass
+   ```
+
+## Example
+
+For the "Median of Two Sorted Arrays" problem:
+
+1. Template configuration:
+   ```python
+   solution_method = "findMedianSortedArrays"
+   solution_params = ["nums1", "nums2"]
+   ```
+
+2. Solution implementation:
+   ```python
+   class Solution:
+       def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+           # Your implementation here
+   ```
+
+3. Input file (input.txt):
+   ```
+   [[1,3],[2]]
+   [[1,2],[3,4]]
+   ```
+
+4. Run the solution:
+   ```bash
+   python leetcode_template.py
+   ```
+
+5. Check output in `output.txt`:
+   ```
+   Case 1: 2.0
+   Case 2: 2.5
+   ``` 
