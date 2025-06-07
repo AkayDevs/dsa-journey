@@ -1,29 +1,40 @@
+from typing import List
 from queue import LifoQueue
 
 class Node:
+
     def __init__(self, val):
-        self.val = val 
-        self.left : Node = None
-        self.right : Node = None
+        self.data = val 
+        self.left = None
+        self.right = None
 
-def preorder_iterative(head: Node) -> None:
-    if head == None:
-        return
-    
-    s = LifoQueue()
-    s.put_nowait(head)
+def iterative_inorder(head: Node) -> List[int]:
+    ans = []
+    stack = LifoQueue()
+    curr = root
 
-    while not s.empty():
-        cur_node = s.get_nowait()
-        print(cur_node.val)
+    while curr is not None or not stack.empty():
         
-        if cur_node.right:
-            s.put_nowait(cur_node.right)
-        if cur_node.left:
-            s.put_nowait(cur_node.left)
+        # Reach the left most Node of the curr Node
+        while curr is not None:
+            
+            # Place pointer to a tree node on
+            # the stack before traversing
+            # the node's left subtree
+            stack.put_nowait(curr)
+            curr = curr.left
 
+        # Current must be None at this point
+        curr = stack.get_nowait()
+        ans.append(curr.data)
 
-    return
+        # we have visited the node and its
+        # left subtree. Now, it's right
+        # subtree's turn
+        curr = curr.right
+
+    return ans
+            
 
 if __name__ == "__main__":
     root = Node(1)
@@ -33,4 +44,4 @@ if __name__ == "__main__":
     root.left.right = Node(4)
     root.left.right.left = Node(5)
     root.left.right.right = Node(6)
-    preorder_iterative(root)
+    print(iterative_inorder(root))
