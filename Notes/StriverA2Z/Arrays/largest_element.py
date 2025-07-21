@@ -36,18 +36,26 @@ except ImportError:
 
 # --- Problem Description ---
 '''
-Add the problem statement here.
+Given an array, we have to find the largest element in the array.
 '''
 
 # --- Example Test Cases ---
 '''
-Add example inputs and their expected outputs from the problem statement.
+Example 1:
+Input: arr[] = {2,5,1,3,0};
+Output: 5
+Explanation: 5 is the largest element in the array. 
+
+Example2: 
+Input: arr[] = {8,10,5,7,9};
+Output: 10
+Explanation: 10 is the largest element in the array. 
 '''
 
 # --- Solution ---
 
 class Solution:
-    def solve(self, *args, **kwargs) -> Any:
+    def solve(self, nums) -> Any:
         """
         Consider edge cases:
         - Empty inputs
@@ -55,11 +63,15 @@ class Solution:
         - Constraints on input values (e.g., negative numbers, large numbers)
         
         Time Complexity: O(N)
-        Space Complexity: O(N)
+        Space Complexity: O(1)
         """
         # --- Algorithm Implementation ---
-        # Your solution logic here
-        pass
+        max_elem = float('-inf')
+        for cur_elem in nums:
+            if cur_elem > max_elem:
+                max_elem = cur_elem
+
+        return max_elem
 
 # --- Main Execution for Testing ---
 if __name__ == "__main__":
